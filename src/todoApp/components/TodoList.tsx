@@ -1,11 +1,12 @@
-import TodoItem from "./TodoItem";
+import TodoItem from './TodoItem';
+import styles from '../css/Todo.module.css';
 
 const TodoList = () => {
   return (
-    <div>
-      <TodoItem/>
-      <TodoItem/>
-      <TodoItem/>
+    <div className={styles.list}>
+      <TodoItem />
+      <TodoItem />
+      <TodoItem />
     </div>
   );
 };

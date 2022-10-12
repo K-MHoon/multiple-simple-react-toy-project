@@ -1,5 +1,11 @@
+import styles from '../css/Todo.module.css';
+
 const TodoHeader = () => {
-  return <h1>TodoHeader</h1>;
+  return (
+    <div className={styles.header}>
+      <h1>TODO Application</h1>;
+    </div>
+  );
 };
 
 export default TodoHeader;
