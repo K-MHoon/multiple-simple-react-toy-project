@@ -1,12 +1,17 @@
 import TodoItem from './TodoItem';
 import styles from '../css/Todo.module.css';
+import { Todo } from '../App';
 
-const TodoList = () => {
+interface Props {
+  readonly todos: Todo[];
+}
+
+const TodoList = ({ todos }: Props) => {
   return (
     <div className={styles.list}>
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
+      {todos.map((todo) => (
+        <TodoItem todo={todo} key={todo.id} />
+      ))}
     </div>
   );
 };

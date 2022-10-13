@@ -1,10 +1,15 @@
 import styles from '../css/Todo.module.css';
+import { Todo } from '../App';
 
-const TodoItem = () => {
+interface Props {
+  readonly todo: Todo;
+}
+
+const TodoItem = ({ todo }: Props) => {
   return (
     <div className={styles.item}>
       <input type="checkbox" />
-      <span>TodoItem</span>
+      <span>{todo.text}</span>
       <button>삭제</button>
     </div>
   );
