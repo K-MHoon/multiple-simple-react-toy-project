@@ -1,9 +1,13 @@
 import styles from '../css/Todo.module.css';
 
-const TodoFooter = () => {
+interface Porps {
+  readonly onClearAll: () => void;
+}
+
+const TodoFooter = ({ onClearAll }: Porps) => {
   return (
     <div className={styles.footer}>
-      <h1>전체 삭제</h1>;
+      <button onClick={() => onClearAll()}>전체 삭제</button>
     </div>
   );
 };

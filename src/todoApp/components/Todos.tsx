@@ -18,13 +18,26 @@ const Todos = () => {
     setTodos(todos.concat(todo));
     nextId.current += 1;
   };
+  const onRemove = (id: number) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+  const onClearAll = () => {
+    setTodos([]);
+  };
+  const onToggle = (id: number) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, done: !todo.done } : todo,
+      ),
+    );
+  };
 
   return (
     <div>
       <TodoHeader />
       <TodoInput onInsert={onInsert} />
-      <TodoList todos={todos} />
-      <TodoFooter />
+      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
+      <TodoFooter onClearAll={onClearAll} />
     </div>
   );
 };
