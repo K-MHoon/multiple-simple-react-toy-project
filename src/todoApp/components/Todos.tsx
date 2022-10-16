@@ -15,17 +15,17 @@ const Todos = () => {
       done: false,
     };
 
-    setTodos(todos.concat(todo));
+    setTodos((todos) => todos.concat(todo));
     nextId.current += 1;
   };
   const onRemove = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
   };
   const onClearAll = () => {
-    setTodos([]);
+    setTodos(() => []);
   };
   const onToggle = (id: number) => {
-    setTodos(
+    setTodos((todos) =>
       todos.map((todo) =>
         todo.id === id ? { ...todo, done: !todo.done } : todo,
       ),
