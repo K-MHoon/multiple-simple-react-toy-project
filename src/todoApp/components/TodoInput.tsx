@@ -1,26 +1,19 @@
 import styles from '../css/Todo.module.css';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface Props {
-  readonly onInsert: (value: string) => void;
+  readonly input: string;
+  readonly onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  readonly onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const TodoInput = ({ onInsert }: Props) => {
-  const [value, setValue] = useState('');
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onInsert(value);
-    setValue('');
-  };
+const TodoInput = ({ input, onChange, onSubmit }: Props) => {
   return (
     <div className={styles.input}>
       <form onSubmit={onSubmit}>
         <input
           placeholder="할 일을 입력하세요"
-          value={value}
+          value={input}
           onChange={onChange}
         />
         <button type="submit">추가</button>
