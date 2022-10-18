@@ -1,14 +1,15 @@
+import { TodoConsumer } from '../contexts/todo';
 import styles from '../css/Todo.module.css';
 
-interface Porps {
-  readonly onClearAll: () => void;
-}
-
-const TodoFooter = ({ onClearAll }: Porps) => {
+const TodoFooter = () => {
   return (
-    <div className={styles.footer}>
-      <button onClick={() => onClearAll()}>전체 삭제</button>
-    </div>
+    <TodoConsumer>
+      {({ actions }) => (
+        <div className={styles.footer}>
+          <button onClick={() => actions.onClearAll()}>전체 삭제</button>
+        </div>
+      )}
+    </TodoConsumer>
   );
 };
 
