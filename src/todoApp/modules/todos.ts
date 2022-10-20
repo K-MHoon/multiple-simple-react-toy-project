@@ -15,7 +15,11 @@ export const clearAllTodos = () => ({
   type: CLEAR_ALL_TODOS,
 });
 
-export interface TodoState {}
+export interface TodoState {
+  input: string;
+  todos: Todo[];
+  nextTodoId: number;
+}
 
 const initialState: TodoState = {
   input: '',
