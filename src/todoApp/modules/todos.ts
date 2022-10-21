@@ -11,6 +11,24 @@ export const changeTodoInput = (input: string) => ({
   input,
 });
 
+export const addTodo = (input: string) => ({
+  type: ADD_TODO,
+  todo: {
+    text: input,
+    done: false,
+  },
+});
+
+export const toggleTodoStatus = (id: number) => ({
+  type: TOGGLE_TODO_STATUS,
+  id,
+});
+
+export const removeTodo = (id: number) => ({
+  type: REMOVE_TODO,
+  id,
+});
+
 export const clearAllTodos = () => ({
   type: CLEAR_ALL_TODOS,
 });
@@ -29,6 +47,9 @@ const initialState: TodoState = {
 
 type TodoAction =
   | ReturnType<typeof changeTodoInput>
+  | ReturnType<typeof addTodo>
+  | ReturnType<typeof toggleTodoStatus>
+  | ReturnType<typeof removeTodo>
   | ReturnType<typeof clearAllTodos>;
 
 function todos(state: TodoState = initialState, action: TodoAction) {
@@ -37,6 +58,31 @@ function todos(state: TodoState = initialState, action: TodoAction) {
       return {
         ...state,
         input: action.input,
+      };
+    case ADD_TODO:
+      const newTodo = { ...action.todo, id: state.nextTodoId };
+      state.nextTodoId++;
+
+      return {
+        ...state,
+        todos: state.todos.concat(newTodo),
+      };
+    case TOGGLE_TODO_STATUS:
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.id ? { ...todo, done: !todo.done } : todo,
+        ),
+      };
+    case REMOVE_TODO:
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo.id !== action.id),
+      };
+    case CLEAR_ALL_TODOS:
+      return {
+        ...state,
+        todos: [],
       };
     default:
       return state;
