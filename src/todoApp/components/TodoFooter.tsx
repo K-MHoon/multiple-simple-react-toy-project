@@ -1,13 +1,13 @@
-import { useContext } from 'react';
-import TodoContext from '../contexts/todo';
 import styles from '../css/Todo.module.css';
 
-const TodoFooter = () => {
-  const { actions } = useContext(TodoContext);
+interface Props {
+  readonly onClearAll: () => void;
+}
 
+const TodoFooter = ({ onClearAll }: Props) => {
   return (
     <div className={styles.footer}>
-      <button onClick={() => actions.onClearAll()}>전체 삭제</button>
+      <button onClick={onClearAll}>전체 삭제</button>
     </div>
   );
 };

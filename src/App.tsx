@@ -4,7 +4,7 @@ import './App.css';
 import Todos from './todoApp/components/Todos';
 
 function App() {
-  return <Todos />;
+  return <div>hello</div>;
 }
 
 export default App;
