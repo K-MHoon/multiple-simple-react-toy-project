@@ -1,4 +1,4 @@
-import TodosContainer from './container/TodosContainer';
+import TodosContainer from './containers/TodosContainer';
 
 export interface Todo {
   id: number;
