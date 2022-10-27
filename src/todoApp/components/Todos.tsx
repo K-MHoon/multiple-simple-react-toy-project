@@ -8,7 +8,7 @@ import TodoFilter from './TodoFilter';
 
 interface Props {
   readonly input: string;
-  readonly todos: Todo[];
+  readonly todos?: Todo[];
   readonly onRemove: (id: number) => void;
   readonly onToggle: (id: number) => void;
   readonly onClearAll: () => void;

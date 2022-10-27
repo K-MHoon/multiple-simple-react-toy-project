@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { Todo } from '../App';
 
 interface Props {
-  readonly todos: Todo[];
+  readonly todos?: Todo[];
   readonly onRemove: (id: number) => void;
   readonly onToggle: (id: number) => void;
 }
@@ -13,14 +13,15 @@ interface Props {
 const TodoList = ({ todos, onRemove, onToggle }: Props) => {
   return (
     <div className={styles.list}>
-      {todos.map((todo) => (
-        <TodoItem
-          todo={todo}
-          key={todo.id}
-          onRemove={onRemove}
-          onToggle={onToggle}
-        />
-      ))}
+      {todos &&
+        todos.map((todo) => (
+          <TodoItem
+            todo={todo}
+            key={todo.id}
+            onRemove={onRemove}
+            onToggle={onToggle}
+          />
+        ))}
     </div>
   );
 };

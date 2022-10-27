@@ -13,6 +13,24 @@ import { Dispatch } from 'redux';
 import { Todo } from '../App';
 import { useCallback } from 'react';
 
+const getFilteredTodos = (todos: Todo[], filter: string) => {
+  if (filter === 'ALL') {
+    return todos;
+  }
+
+  if (filter === 'A') {
+    return todos.filter((todo) => {
+      return todo.done === false;
+    });
+  }
+
+  if (filter === 'B') {
+    return todos.filter((todo) => {
+      return todo.done === true;
+    });
+  }
+};
+
 const TodosContainer = () => {
   const { input, filter, todos } = useSelector((state: TodoState) => ({
     input: state.input,
@@ -44,10 +62,12 @@ const TodosContainer = () => {
     [dispatch],
   );
 
+  const filteredTodos = getFilteredTodos(todos, filter);
+
   return (
     <Todos
       input={input}
-      todos={todos}
+      todos={filteredTodos}
       onChangeInput={onChangeInput}
       onInsert={onInsert}
       onToggle={onToggle}
