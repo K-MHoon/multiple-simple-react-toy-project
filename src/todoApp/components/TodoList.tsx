@@ -8,9 +8,10 @@ interface Props {
   readonly todos?: Todo[];
   readonly onRemove: (id: number) => void;
   readonly onToggle: (id: number) => void;
+  readonly onEdit: (id: number, input: string) => void;
 }
 
-const TodoList = ({ todos, onRemove, onToggle }: Props) => {
+const TodoList = ({ todos, onRemove, onToggle, onEdit }: Props) => {
   return (
     <div className={styles.list}>
       {todos &&
@@ -20,6 +21,7 @@ const TodoList = ({ todos, onRemove, onToggle }: Props) => {
             key={todo.id}
             onRemove={onRemove}
             onToggle={onToggle}
+            onEdit={onEdit}
           />
         ))}
     </div>

@@ -7,6 +7,7 @@ import {
   removeTodo,
   clearAllTodos,
   changeFilter,
+  editTodo,
 } from '../modules/todos';
 import { TodoState } from '../modules/todos';
 import { Dispatch } from 'redux';
@@ -45,6 +46,11 @@ const TodosContainer = () => {
     [dispatch],
   );
 
+  const onEdit = useCallback(
+    (id: number, input: string) => dispatch(editTodo(id, input)),
+    [dispatch],
+  );
+
   return (
     <Todos
       input={input}
@@ -56,6 +62,7 @@ const TodosContainer = () => {
       onClearAll={onClearAll}
       filter={filter}
       onChangeFilter={onChangeFilter}
+      onEdit={onEdit}
     />
   );
 };

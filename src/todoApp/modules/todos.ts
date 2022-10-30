@@ -9,6 +9,15 @@ const REMOVE_TODO = 'REMOVE_TODO';
 const CLEAR_ALL_TODOS = 'CLEAR_ALL_TODOS';
 const RESTORE = 'RESTORE';
 const CHANGE_FILTER = 'CHANGE_FILTER';
+const EDIT_TODO = 'EDIT_TODO';
+
+export const editTodo = createAction(
+  EDIT_TODO,
+  (id: number, input: string) => ({
+    id,
+    input,
+  }),
+);
 
 export const changeTodoInput = createAction(
   CHANGE_TODO_INPUT,
@@ -92,6 +101,14 @@ const todos = createReducer(initialState, {
   [CHANGE_FILTER]: (state, { payload: filter }) => ({
     ...state,
     filter: filter,
+  }),
+  [EDIT_TODO]: (state, action) => ({
+    ...state,
+    todos: state.todos.map((todo) =>
+      todo.id === action.payload.id
+        ? { ...todo, text: action.payload.input }
+        : todo,
+    ),
   }),
 });
 

@@ -6,9 +6,10 @@ interface Props {
   readonly todo: Todo;
   readonly onRemove: (id: number) => void;
   readonly onToggle: (id: number) => void;
+  readonly onEdit: (id: number, input: string) => void;
 }
 
-const TodoItem = ({ todo, onRemove, onToggle }: Props) => {
+const TodoItem = ({ todo, onRemove, onToggle, onEdit }: Props) => {
   const { id, text, done } = todo;
   const [showInput, setShowInput] = useState(false);
   const [inputText, setInputText] = useState('');
@@ -28,6 +29,8 @@ const TodoItem = ({ todo, onRemove, onToggle }: Props) => {
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       console.log('handleKeyPress Enter inputText : ' + inputText);
+
+      onEdit(id, inputText);
 
       setShowInput(false);
     }
