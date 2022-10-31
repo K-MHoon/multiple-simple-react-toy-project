@@ -10,6 +10,11 @@ const CLEAR_ALL_TODOS = 'CLEAR_ALL_TODOS';
 const RESTORE = 'RESTORE';
 const CHANGE_FILTER = 'CHANGE_FILTER';
 const EDIT_TODO = 'EDIT_TODO';
+const SET_EDITING_ID = 'SET_EDITING_ID';
+const RESET_EDITING_ID = 'RESET_EDITING_ID';
+
+export const setEditingId = createAction(SET_EDITING_ID, (id: number) => id);
+export const resetEditingId = createAction(RESET_EDITING_ID);
 
 export const editTodo = createAction(
   EDIT_TODO,
@@ -50,6 +55,7 @@ export interface TodoState {
   todos: Todo[];
   nextTodoId: number;
   filter: string;
+  editingId: number;
 }
 
 const initialState: TodoState = {
@@ -57,6 +63,7 @@ const initialState: TodoState = {
   todos: [],
   nextTodoId: 1,
   filter: 'ALL',
+  editingId: 0,
 };
 
 const todos = createReducer(initialState, {
@@ -109,6 +116,14 @@ const todos = createReducer(initialState, {
         ? { ...todo, text: action.payload.input }
         : todo,
     ),
+  }),
+  [SET_EDITING_ID]: (state, { payload: id }) => ({
+    ...state,
+    editingId: id,
+  }),
+  [RESET_EDITING_ID]: (state) => ({
+    ...state,
+    editingId: 0,
   }),
 });
 

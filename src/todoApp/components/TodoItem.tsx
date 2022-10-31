@@ -1,6 +1,8 @@
 import styles from '../css/Todo.module.css';
 import { Todo } from '../App';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { resetEditingId, TodoState, setEditingId } from '../modules/todos';
 
 interface Props {
   readonly todo: Todo;
@@ -10,15 +12,29 @@ interface Props {
 }
 
 const TodoItem = ({ todo, onRemove, onToggle, onEdit }: Props) => {
+  const dispatch = useDispatch();
   const { id, text, done } = todo;
-  const [showInput, setShowInput] = useState(false);
   const [inputText, setInputText] = useState('');
+  const { editingId } = useSelector((state: TodoState) => ({
+    editingId: state.editingId,
+  }));
+
+  const showInput = id === editingId;
+  const onSetEditingId = useCallback(
+    (id: number) => dispatch(setEditingId(id)),
+    [dispatch],
+  );
+  const onResetEditingId = useCallback(
+    () => dispatch(resetEditingId()),
+    [dispatch],
+  );
 
   const onDoubleClick = () => {
     console.log('onDoubleClick');
 
+    onSetEditingId(id);
+
     setInputText(text);
-    setShowInput(true);
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +48,7 @@ const TodoItem = ({ todo, onRemove, onToggle, onEdit }: Props) => {
 
       onEdit(id, inputText);
 
-      setShowInput(false);
+      onResetEditingId();
     }
   };
 
@@ -40,7 +56,7 @@ const TodoItem = ({ todo, onRemove, onToggle, onEdit }: Props) => {
   const handleBlur = () => {
     console.log('handleBlur inputText : ' + inputText);
 
-    setShowInput(false);
+    onResetEditingId();
   };
 
   const editInput: React.RefObject<HTMLInputElement> = React.createRef();
