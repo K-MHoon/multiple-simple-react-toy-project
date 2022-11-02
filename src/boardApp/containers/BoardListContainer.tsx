@@ -1,8 +1,9 @@
 import React from 'react';
+import BoardList from '../components/BoardList';
 
 // 목록조회
 const BoardListContainer = () => {
-  return <div></div>;
+  return <BoardList />;
 };
 
 export default BoardListContainer;

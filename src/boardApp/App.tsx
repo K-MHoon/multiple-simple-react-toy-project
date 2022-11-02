@@ -1,10 +1,11 @@
+import React from 'react';
 import { Route } from 'react-router-dom';
 import BoardListContainer from './containers/BoardListContainer';
 import BoardModifyContainer from './containers/BoardModifyContainer';
 import BoardReadContainer from './containers/BoardReadContainer';
 import BoardRegisterContainer from './containers/BoardRegisterContainer';
 
-function App() {
+const App = () => {
   return (
     <>
       <Route component={BoardListContainer} path="/" exact />
@@ -13,6 +14,6 @@ function App() {
       <Route component={BoardReadContainer} path="/read/:boardNo " />
     </>
   );
-}
+};
 
 export default App;

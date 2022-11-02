@@ -1,38 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './todoApp/App';
+import App from './boardApp/App';
 import reportWebVitals from './reportWebVitals';
 import { legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import todos, { restore } from './todoApp/modules/todos';
+import { BrowserRouter } from 'react-router-dom';
 
-const store = createStore(todos, composeWithDevTools());
+// const store = createStore(todos, composeWithDevTools());
 
-function loadData() {
-  try {
-    const data = localStorage.getItem('todo-app-data');
-    console.log('loadData data : ' + data);
+// function loadData() {
+//   try {
+//     const data = localStorage.getItem('todo-app-data');
+//     console.log('loadData data : ' + data);
 
-    if (!data) return;
+//     if (!data) return;
 
-    store.dispatch(restore(JSON.parse(data)));
-  } catch (e) {
-    console.log('localStorage is not working');
-  }
-}
+//     store.dispatch(restore(JSON.parse(data)));
+//   } catch (e) {
+//     console.log('localStorage is not working');
+//   }
+// }
 
-loadData();
+// loadData();
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
 );
 
 // If you want to start measuring performance in your app, pass a function
