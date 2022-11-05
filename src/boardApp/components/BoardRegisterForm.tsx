@@ -2,8 +2,12 @@ import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../css/Board.module.css';
 
+interface Props {
+  readonly onRegister: (title: string, content: string, writer: string) => void;
+}
+
 // 등록 폼
-const BoardRegisterForm = () => {
+const BoardRegisterForm = ({ onRegister }: Props) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [writer, setWriter] = useState('');
@@ -29,10 +33,18 @@ const BoardRegisterForm = () => {
     [],
   );
 
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      onRegister(title, content, writer);
+    },
+    [title, content, writer, onRegister],
+  );
+
   return (
     <div className={styles.centered}>
       <h2>게시판 등록</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <table>
           <tbody>
             <tr>
