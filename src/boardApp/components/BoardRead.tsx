@@ -7,10 +7,11 @@ interface Props {
   readonly boardNo: string;
   readonly board?: Board;
   readonly isLoading: boolean;
+  readonly onRemove: () => void;
 }
 
 // 상세보기
-const BoardRead = ({ boardNo, board, isLoading }: Props) => {
+const BoardRead = ({ boardNo, board, isLoading, onRemove }: Props) => {
   return (
     <div className={styles.centered}>
       <h2>게시판 상세보기</h2>
@@ -53,7 +54,7 @@ const BoardRead = ({ boardNo, board, isLoading }: Props) => {
           </table>
           <div className={styles.align_centered}>
             <Link to={`/edit/${boardNo}`}>편집</Link>
-            <button>삭제</button>
+            <button onClick={onRemove}>삭제</button>
             <Link to="/">목록</Link>
           </div>
         </>
