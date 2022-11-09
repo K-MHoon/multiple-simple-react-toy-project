@@ -6,10 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import todos, { restore } from './todoApp/modules/todos';
 import { BrowserRouter } from 'react-router-dom';
+import board from './boardApp/modules/board';
 
-// const store = createStore(todos, composeWithDevTools());
+const store = createStore(board, composeWithDevTools());
 
 // function loadData() {
 //   try {
@@ -30,9 +30,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
 );
 
 // If you want to start measuring performance in your app, pass a function
