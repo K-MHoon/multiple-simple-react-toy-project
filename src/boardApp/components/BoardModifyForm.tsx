@@ -7,19 +7,27 @@ interface Props {
   readonly board?: Board;
   readonly isLoading: boolean;
   readonly onModify: (boardNo: string, title: string, content: string) => void;
+  readonly onChangeTitle: (title: string) => void;
+  readonly onChangeContent: (content: string) => void;
 }
 
 // 수정 폼
-const BoardModifyForm = ({ board, isLoading, onModify }: Props) => {
+const BoardModifyForm = ({
+  board,
+  isLoading,
+  onModify,
+  onChangeTitle,
+  onChangeContent,
+}: Props) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+    onChangeTitle(e.target.value);
   };
 
   const handleChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
+    onChangeContent(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

@@ -1,16 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Board } from '../App';
 import BoardModifyForm from '../components/BoardModifyForm';
 import * as client from '../lib/api';
+import {
+  BoardState,
+  changeContent,
+  changeTitle,
+  fetchFailure,
+  fetchStart,
+  fetchSuccess,
+} from '../modules/board';
 
 // 수정 컨테이너
 const BoardModifyContainer = () => {
   const { boardNo } = useParams();
   const navigate = useNavigate();
-
-  const [board, setBoard] = useState<Board>();
-  const [isLoading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const { board, isLoading } = useSelector((state: BoardState) => ({
+    board: state.board,
+    isLoading: state.loading.FETCH,
+  }));
 
   const onModify = async (boardNo: string, title: string, content: string) => {
     try {
@@ -24,25 +35,47 @@ const BoardModifyContainer = () => {
     }
   };
 
-  const readBoard = async (boardNo: string) => {
-    setLoading(true);
-    try {
-      const response = await client.fetchBoard(boardNo);
+  const readBoard = useCallback(
+    async (boardNo: string) => {
+      dispatch(fetchStart());
+      try {
+        const response = await client.fetchBoard(boardNo);
 
-      setBoard(response.data);
-
-      setLoading(false);
-    } catch (e) {
-      throw e;
-    }
-  };
+        dispatch(fetchSuccess(response.data));
+      } catch (e) {
+        dispatch(fetchFailure(e));
+        throw e;
+      }
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     readBoard(boardNo!);
-  }, [boardNo]);
+  }, [boardNo, readBoard]);
+
+  const onChangeTitle = useCallback(
+    (title: string) => {
+      return dispatch(changeTitle(title));
+    },
+    [dispatch],
+  );
+
+  const onChangeContent = useCallback(
+    (content: string) => {
+      return dispatch(changeContent(content));
+    },
+    [dispatch],
+  );
 
   return (
-    <BoardModifyForm board={board} isLoading={isLoading} onModify={onModify} />
+    <BoardModifyForm
+      board={board}
+      isLoading={isLoading}
+      onChangeTitle={onChangeTitle}
+      onChangeContent={onChangeContent}
+      onModify={onModify}
+    />
   );
 };
 
