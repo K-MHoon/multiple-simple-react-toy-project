@@ -7,9 +7,9 @@ import { legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { BrowserRouter } from 'react-router-dom';
-import board from './boardApp/modules/board';
+import rootReducer from './boardApp/modules';
 
-const store = createStore(board, composeWithDevTools());
+const store = createStore(rootReducer, composeWithDevTools());
 
 // function loadData() {
 //   try {
