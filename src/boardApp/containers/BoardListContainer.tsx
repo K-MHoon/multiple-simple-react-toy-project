@@ -2,29 +2,31 @@ import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BoardList from '../components/BoardList';
 import * as client from '../lib/api';
-import {
-  BoardState,
-  fetchListFailure,
-  fetchListStart,
-  fetchListSuccess,
-} from '../modules/board';
+import { RootState } from '../modules';
+import { fetchListFailure, fetchListSuccess } from '../modules/board';
+import { endLoading, startLoading } from '../modules/loading';
 
 // 목록조회
 const BoardListContainer = () => {
-  const { boards, isLoading } = useSelector((state: BoardState) => ({
-    boards: state.boards,
-    isLoading: state.loading.FETCH_LIST,
-  }));
+  const { boards, isLoading } = useSelector(
+    ({ board, loading }: RootState) => ({
+      boards: board.boards,
+      isLoading: loading.FETCH_LIST,
+    }),
+  );
   const dispatch = useDispatch();
 
   const listBoard = useCallback(async () => {
-    dispatch(fetchListStart());
+    // dispatch(fetchListStart());
+    dispatch(startLoading('FETCH_LIST'));
     try {
       const response = await client.fetchBoardList();
 
       dispatch(fetchListSuccess(response.data));
+      dispatch(endLoading('FETCH_LIST'));
     } catch (e) {
       dispatch(fetchListFailure(e));
+      dispatch(endLoading('FETCH_LIST'));
       throw e;
     }
   }, [dispatch]);

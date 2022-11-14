@@ -1,15 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Board } from '../App';
 import BoardRead from '../components/BoardRead';
 import * as client from '../lib/api';
-import {
-  BoardState,
-  fetchFailure,
-  fetchStart,
-  fetchSuccess,
-} from '../modules/board';
+import { RootState } from '../modules';
+import { fetchFailure, fetchSuccess } from '../modules/board';
+import { endLoading, startLoading } from '../modules/loading';
 
 type BoardParam = {
   boardNo: string;
@@ -18,22 +14,25 @@ type BoardParam = {
 // 상세조회 컨테이너
 const BoardReadContainer = () => {
   const { boardNo } = useParams<BoardParam>();
-  const { board, isLoading } = useSelector((state: BoardState) => ({
-    board: state.board,
-    isLoading: state.loading.FETCH,
+  const { board, isLoading } = useSelector(({ board, loading }: RootState) => ({
+    board: board.board,
+    isLoading: loading.FETCH,
   }));
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const readBoard = useCallback(
     async (boardNo: string) => {
-      dispatch(fetchStart());
+      // dispatch(fetchStart());
+      dispatch(startLoading('FETCH'));
       try {
         const response = await client.fetchBoard(boardNo);
 
         dispatch(fetchSuccess(response.data));
+        dispatch(endLoading('FETCH'));
       } catch (e) {
         dispatch(fetchFailure(e));
+        dispatch(endLoading('FETCH'));
         throw e;
       }
     },
