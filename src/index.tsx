@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './boardApp/App';
+// import App from './boardApp/App';
+import App from './fileBoardApp/App';
 import reportWebVitals from './reportWebVitals';
-import { legacy_createStore as createStore } from 'redux';
+import { applyMiddleware, legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { BrowserRouter } from 'react-router-dom';
 import rootReducer from './boardApp/modules';
+import ReduxThunk from 'redux-thunk';
 
-const store = createStore(rootReducer, composeWithDevTools());
+// const store = createStore(
+//   rootReducer,
+//   composeWithDevTools(applyMiddleware(ReduxThunk)),
+// );
 
 // function loadData() {
 //   try {
@@ -30,11 +35,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
+  // <Provider store={store}>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  // </Provider>,
 );
 
 // If you want to start measuring performance in your app, pass a function
