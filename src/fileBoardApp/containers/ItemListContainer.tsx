@@ -1,7 +1,8 @@
 import React from 'react';
+import ItemList from '../components/ItemList';
 
 const ItemListContainer = () => {
-  return <div></div>;
+  return <ItemList />;
 };
 
 export default ItemListContainer;

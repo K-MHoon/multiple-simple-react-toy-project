@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ItemRegisterContainer = () => {
-  return <div></div>;
+  return <ItemRegisterContainer />;
 };
 
 export default ItemRegisterContainer;
