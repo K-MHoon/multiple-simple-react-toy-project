@@ -1,7 +1,8 @@
 import React from 'react';
+import ItemModifyForm from '../components/ItemModifyForm';
 
 const ItemModifyContainer = () => {
-  return <div></div>;
+  return <ItemModifyForm />;
 };
 
 export default ItemModifyContainer;
