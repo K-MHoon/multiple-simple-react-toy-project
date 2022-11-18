@@ -5,6 +5,13 @@ import ItemModifyContainer from './containers/ItemModifyContainer';
 import ItemReadContainer from './containers/ItemReadContainer';
 import ItemRegisterContainer from './containers/ItemRegisterContainer';
 
+export interface Item {
+  readonly itemId: string;
+  readonly itemName: string;
+  readonly price: number;
+  readonly description: string;
+}
+
 const App = () => {
   return (
     <Routes>
