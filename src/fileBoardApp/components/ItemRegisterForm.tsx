@@ -2,7 +2,16 @@ import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../css/Item.module.css';
 
-const ItemRegisterForm = () => {
+interface Props {
+  readonly onRegister: (
+    itemName: string,
+    price: number,
+    description: string,
+    file: File,
+  ) => void;
+}
+
+const ItemRegisterForm = ({ onRegister }: Props) => {
   const [itemName, setItemName] = useState('');
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
@@ -39,10 +48,21 @@ const ItemRegisterForm = () => {
     [],
   );
 
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      if (file) {
+        onRegister(itemName, price, description, file);
+      }
+    },
+    [onRegister, itemName, price, description, file],
+  );
+
   return (
     <div className={styles.centered}>
       <h2>상품 등록</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <table>
           <tbody>
             <tr>
