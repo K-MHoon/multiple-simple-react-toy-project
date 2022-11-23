@@ -4,7 +4,7 @@ import { Item } from '../App';
 import styles from '../css/Item.module.css';
 
 interface Props {
-  readonly itemId: string;
+  readonly itemId?: string;
   readonly item?: Item;
   readonly isLoading: boolean;
 }
