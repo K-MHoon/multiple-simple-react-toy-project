@@ -21,8 +21,8 @@ export const FETCH_ITEM = 'item/FETCH_ITEM';
 export const FETCH_SUCCESS = 'item/FETCH_SUCCESS';
 export const FETCH_FAILURE = 'item/FETCH_FAILURE';
 
-const FETCH_LIST_SUCCESS = 'item/FETCH_LIST_SUCCESS';
-const FETCH_LIST_FAILURE = 'item/FETCH_LIST_FAILURE';
+export const FETCH_LIST_SUCCESS = 'item/FETCH_LIST_SUCCESS';
+export const FETCH_LIST_FAILURE = 'item/FETCH_LIST_FAILURE';
 export const FETCH_ITEM_LIST = 'item/FETCH_ITEM_LIST';
 
 export const fetchItem = createAction(FETCH_ITEM, (itemId: string) => itemId);
