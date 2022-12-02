@@ -3,6 +3,11 @@ import AdminSetupPage from './components/member/AdminSetupPage';
 import SignInPage from './pages/auth/SignInPage';
 import HomePage from './pages/HomePage';
 
+export interface LoginInput {
+  userId: string;
+  password: string;
+}
+
 const App = () => {
   return (
     <Routes>
