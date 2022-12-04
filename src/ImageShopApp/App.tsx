@@ -8,6 +8,15 @@ export interface LoginInput {
   password: string;
 }
 
+export interface AuthInfo {
+  auth: string;
+}
+
+export interface MyInfo {
+  userName: string;
+  authList: AuthInfo[];
+}
+
 const App = () => {
   return (
     <Routes>

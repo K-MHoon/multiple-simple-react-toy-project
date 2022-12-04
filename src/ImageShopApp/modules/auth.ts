@@ -3,7 +3,7 @@ import React from 'react';
 import { createAction } from 'redux-actions';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { createReducer } from 'typesafe-actions';
-import { LoginInput } from '../App';
+import { LoginInput, MyInfo } from '../App';
 import * as api from '../lib/api';
 import client from '../lib/client';
 
@@ -40,10 +40,12 @@ export function* authSaga() {
 
 export interface AuthState {
   accessToken: string;
+  myInfo: MyInfo | null;
 }
 
 const initialState: AuthState = {
   accessToken: '',
+  myInfo: null,
 };
 
 const auth = createReducer(initialState, {
