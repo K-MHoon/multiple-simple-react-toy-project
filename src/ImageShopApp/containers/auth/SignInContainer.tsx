@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SignInForm from '../../components/auth/SignInForm';
 import { RootState } from '../../modules';
-import { login } from '../../modules/auth';
+import { checkMyInfo, login } from '../../modules/auth';
 
 const SignInContainer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { accessToken } = useSelector(({ auth }: RootState) => ({
+  const { accessToken, myInfo } = useSelector(({ auth }: RootState) => ({
     accessToken: auth.accessToken,
+    myInfo: auth.myInfo,
   }));
 
   const onSignIn = (userId: string, password: string) => {
@@ -23,10 +24,16 @@ const SignInContainer = () => {
 
   useEffect(() => {
     if (accessToken) {
+      dispatch(checkMyInfo());
+    }
+  }, [accessToken, dispatch]);
+
+  useEffect(() => {
+    if (myInfo) {
       alert('로그인되었습니다.');
       navigate('/');
     }
-  }, [accessToken, dispatch, navigate]);
+  }, [myInfo, navigate]);
 
   return <SignInForm onSignIn={onSignIn} />;
 };
