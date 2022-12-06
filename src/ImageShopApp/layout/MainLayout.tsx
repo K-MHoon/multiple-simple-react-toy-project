@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from '../components/common/Footer';
-import MainHeader from '../components/common/MainHeader';
 import MenuBar from '../components/common/MenuBar';
+import MainHeaderContainer from '../containers/common/MainHeaderContainer';
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -10,7 +10,7 @@ interface Props {
 const MainLayout = ({ children }: Props) => {
   return (
     <div>
-      <MainHeader />
+      <MainHeaderContainer />
       <MenuBar />
       {children}
       <Footer />
