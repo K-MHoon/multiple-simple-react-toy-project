@@ -13,6 +13,9 @@ import ReduxThunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './fileBoardApp/modules';
 import App from './ImageShopApp/App';
+import { checkMyInfo, setAccessToken } from './ImageShopApp/modules/auth';
+import Cookies from 'js-cookie';
+import client from './ImageShopApp/lib/client';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -37,6 +40,24 @@ sagaMiddleware.run(rootSaga);
 // }
 
 // loadData();
+
+function loadUser() {
+  try {
+    const savedToken = Cookies.get('accessToken');
+
+    if (!savedToken) return;
+
+    store.dispatch(setAccessToken(savedToken));
+
+    client.defaults.headers.common.Authorization = `Bearer ${savedToken}`;
+
+    store.dispatch(checkMyInfo());
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+loadUser();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

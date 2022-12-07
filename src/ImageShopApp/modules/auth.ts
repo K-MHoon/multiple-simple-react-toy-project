@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import Cookies from 'js-cookie';
 import React from 'react';
 import { createAction } from 'redux-actions';
 import { call, put, takeLatest } from 'redux-saga/effects';
@@ -44,6 +45,9 @@ function* loginSaga(action: ReturnType<typeof login>) {
     yield put(setAccessToken(accessToken));
 
     client.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+
+    // 쿠키에 액세스토큰을 저장한다.
+    Cookies.set('accessToken', accessToken, { expires: 1 });
   } catch (e) {
     console.log(e);
   }
