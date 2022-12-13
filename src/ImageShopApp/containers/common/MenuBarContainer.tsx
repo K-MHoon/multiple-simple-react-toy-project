@@ -3,10 +3,13 @@ import MenuBar from '../../components/common/MenuBar';
 import { RootState } from '../../modules';
 import { getAuthorized, isAdmin } from '../../modules/selector';
 
-interface Props {}
+interface Props {
+  readonly isAuthorized: boolean;
+  readonly isAdmin: boolean;
+}
 
 const MenuBarContainer = ({ isAuthorized, isAdmin }: Props) => {
-  return (<MenuBar isAuthorized={isAuthorized} isAdmin={isAdmin} />);
+  return <MenuBar isAuthorized={isAuthorized} isAdmin={isAdmin} />;
 };
 
 export default connect((state: RootState) => {
