@@ -2,6 +2,7 @@ import { createAction } from 'redux-actions';
 import { takeLatest } from 'redux-saga/effects';
 import { createReducer } from 'typesafe-actions';
 import createRequestSaga from '../lib/createRequestSaga';
+import { CodeGroup } from '../App';
 import * as api from '../lib/api';
 
 export const FETCH_ONE = 'codeGroup/FETCH_ONE';
@@ -26,8 +27,13 @@ export function* codeGroupSaga() {
   yield takeLatest(FETCH_LIST, fetchListSage);
 }
 
-export interface CodeGroupState {}
+export interface CodeGroupState {
+  codeGroup: CodeGroup | null;
+  codeGroups: CodeGroup[];
+  error: any;
+}
 
+// 모듈 초기 상태
 const initialState: CodeGroupState = {
   codeGroup: null,
   codeGroups: [],
@@ -37,6 +43,23 @@ const initialState: CodeGroupState = {
 const codeGroup = createReducer(initialState, {
   [FETCH_ONE]: (state) => ({
     ...state,
+    codeGroup: null,
+  }),
+  [FETCH_ONE_SUCCESS]: (state, action) => ({
+    ...state,
+    codeGroup: action.payload,
+  }),
+  [FETCH_ONE_FAILURE]: (state, action) => ({
+    ...state,
+    error: action.payload,
+  }),
+  [FETCH_LIST]: (state) => ({
+    ...state,
+    codeGroups: [],
+  }),
+  [FETCH_LIST_SUCCESS]: (state, action) => ({
+    ...state,
+    codeGroups: action.payload,
   }),
   [FETCH_LIST_FAILURE]: (state, action) => ({
     ...state,
