@@ -8,14 +8,13 @@ import { applyMiddleware, legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { BrowserRouter } from 'react-router-dom';
-import rootReducer from './boardApp/modules';
 import ReduxThunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
-import { rootSaga } from './fileBoardApp/modules';
 import App from './ImageShopApp/App';
 import { checkMyInfo, setAccessToken } from './ImageShopApp/modules/auth';
 import Cookies from 'js-cookie';
 import client from './ImageShopApp/lib/client';
+import rootReducer, { rootSaga } from './ImageShopApp/modules';
 
 const sagaMiddleware = createSagaMiddleware();
 
