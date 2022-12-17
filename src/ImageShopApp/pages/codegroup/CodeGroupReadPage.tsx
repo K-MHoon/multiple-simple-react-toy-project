@@ -4,11 +4,11 @@ import CodeGroupReadContainer from '../../containers/codegroup/CodeGroupReadCont
 import MainLayout from '../../layout/MainLayout';
 
 const CodeGroupReadPage = () => {
-  const { groupCode }: { groupCode: string } = useParams();
+  const { groupCode } = useParams();
 
   return (
     <MainLayout>
-      <CodeGroupReadContainer groupCode={groupCode} />
+      <CodeGroupReadContainer groupCode={groupCode!} />
     </MainLayout>
   );
 };
