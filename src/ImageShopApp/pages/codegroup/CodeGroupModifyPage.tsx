@@ -4,11 +4,11 @@ import CodeGroupModifyContainer from '../../containers/codegroup/CodeGroupModify
 import MainLayout from '../../layout/MainLayout';
 
 const CodeGroupModifyPage = () => {
-  const { groupCode }: { groupCode: string } = useParams();
+  const { groupCode } = useParams();
 
   return (
     <MainLayout>
-      <CodeGroupModifyContainer groupCode={groupCode} />
+      <CodeGroupModifyContainer groupCode={groupCode!} />
     </MainLayout>
   );
 };
