@@ -27,6 +27,14 @@ export interface CodeGroup {
   regDate: string;
 }
 
+export interface CodeDetail {
+  groupCode: string;
+  codeValue: string;
+  codeName: string;
+  sortSeq: number;
+  regDate: string;
+}
+
 const App = () => {
   return (
     <Routes>
