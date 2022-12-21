@@ -5,7 +5,7 @@ import styles from '../../css/imageShop.module.css';
 interface Props {
   readonly codeDetail: CodeDetail | null;
   readonly isLoading: boolean;
- readonly onModify: () => void; // TODO
+  readonly onModify: (groupCode: string, codeValue: string, codeName: string) => void; // TODO
 }
 
 const CodeDetailModifyForm = ({codeDetail, isLoading, onModify}: Props) => {
