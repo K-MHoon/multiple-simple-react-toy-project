@@ -2,7 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styles from '../../css/imageShop.module.css';
 
 interface Props {
-  readonly onRegister: () => void; // TODO
+  readonly onRegister: (
+    groupCode: string,
+    codeValue: string,
+    codeName: string,
+  ) => void;
 }
 
 const CodeDetailRegisterForm = ({ onRegister }: Props) => {

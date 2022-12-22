@@ -4,11 +4,11 @@ import auth, { authSaga } from './auth';
 import { all } from 'redux-saga/effects';
 import codegroup, { codeGroupSaga, CodeGroupState } from './codegroup';
 import loading, { LoadingState } from './loading';
-import { CodeDetail } from '../App';
+import { CodeDetailState } from './codedetails';
 
 export interface RootState {
   auth: AuthState;
-  codedetail: CodeDetail;
+  codedetail: CodeDetailState;
   codegroup: CodeGroupState;
   loading: LoadingState;
 }

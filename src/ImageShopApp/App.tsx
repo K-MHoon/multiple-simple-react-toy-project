@@ -35,6 +35,11 @@ export interface CodeDetail {
   regDate: string;
 }
 
+export interface CodeValue {
+  label: string;
+  value: string;
+}
+
 const App = () => {
   return (
     <Routes>
