@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CodeDetail } from '../../App';
+import { CodeDetail, CodeValue } from '../../App';
 import styles from '../../css/imageShop.module.css';
 
 interface Props {

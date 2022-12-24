@@ -41,7 +41,7 @@ const initialState: CodeDetailState = {
   error: null,
 };
 
-const codeDetail = createReducer(initialState, {
+const codedetails = createReducer(initialState, {
   [FETCH_ONE]: (state) => ({
     ...state,
     codeDetail: null,
@@ -68,4 +68,4 @@ const codeDetail = createReducer(initialState, {
   }),
 });
 
-export default codeDetail;
+export default codedetails;
