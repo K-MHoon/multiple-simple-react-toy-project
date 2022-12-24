@@ -1,3 +1,4 @@
+import { CodeDetailKey } from '../App';
 import client from './client';
 
 export const adminSetup = (userId: string, userName: string, userPw: string) =>
@@ -17,3 +18,20 @@ export const writeCodeGroup = (groupCode: string, groupName: string) =>
   client.post('/codegroups', { groupCode, groupName });
 export const removeCodeGroup = (groupCode: string) =>
   client.delete(`/codegroups/${groupCode}`);
+
+export const fetchCodeDetail = ({ groupCode, codeValue }: CodeDetailKey) =>
+  client.get(`/codedetails/${groupCode}/${codeValue}`);
+export const fetchCodeDetailList = () => client.get('/codedetails');
+export const modifyCodeDetail = (
+  groupCode: string,
+  codeValue: string,
+  codeName: string,
+) =>
+  client.put(`/codedetails/${groupCode}/${codeValue}`, { codeValue, codeName });
+export const writeCodeDetail = (
+  groupCode: string,
+  codeValue: string,
+  codeName: string,
+) => client.post('/codedetails', { groupCode, codeValue, codeName });
+export const removeCodeDetail = (groupCode: string, codeValue: string) =>
+  client.delete(`/codedetails/${groupCode}/${codeValue}`);

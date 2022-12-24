@@ -5,6 +5,10 @@ import CodeGroupListPage from './pages/codegroup/CodeGroupListPage';
 import CodeGroupModifyPage from './pages/codegroup/CodeGroupModifyPage';
 import CodeGroupReadPage from './pages/codegroup/CodeGroupReadPage';
 import CodeGroupRegisterPage from './pages/codegroup/CodeGroupRegisterPage';
+import CodeDetailListPage from './pages/codedetail/CodeDetailListPage';
+import CodeDetailModifyPage from './pages/codedetail/CodeDetailModifyPage';
+import CodeDetailReadPage from './pages/codedetail/CodeDetailReadPage';
+import CodeDetailRegisterPage from './pages/codedetail/CodeDetailRegisterPage';
 import HomePage from './pages/HomePage';
 
 export interface LoginInput {
@@ -35,6 +39,11 @@ export interface CodeDetail {
   regDate: string;
 }
 
+export interface CodeDetailKey {
+  groupCode: string;
+  codeValue: string;
+}
+
 export interface CodeValue {
   label: string;
   value: string;
@@ -55,6 +64,17 @@ const App = () => {
       <Route
         path="/codegroup/read/:groupCode"
         element={<CodeGroupReadPage />}
+      />
+
+      <Route path="/codedetail" element={<CodeDetailListPage />} />
+      <Route path="/codedetail/create" element={<CodeDetailRegisterPage />} />
+      <Route
+        path="/codedetail/edit/:groupCode/:codeValue"
+        element={<CodeDetailModifyPage />}
+      />
+      <Route
+        path="/codedetail/read/:groupCode/:codeValue"
+        element={<CodeDetailReadPage />}
       />
     </Routes>
   );
