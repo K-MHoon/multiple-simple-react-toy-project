@@ -32,3 +32,11 @@
 .align_center {
   text-align: center;
 }
+
+.w_160 {
+  width: 160px;
+}
+
+.w_200 {
+  width: 200px;
+}
