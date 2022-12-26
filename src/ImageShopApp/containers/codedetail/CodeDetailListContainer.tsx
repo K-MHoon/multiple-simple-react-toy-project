@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CodeDetailList from '../../components/codedetail/CodeDetailList';
 import { RootState } from '../../modules';
-import { FETCH_LIST } from '../../modules/codedetails';
-import { fetchList } from '../../modules/codegroup';
+import { fetchList, FETCH_LIST } from '../../modules/codedetails';
 
 const CodeDetailListContainer = () => {
   const dispatch = useDispatch();
