@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../../css/imageShop.module.css';
 
 interface Props {
@@ -65,6 +66,9 @@ const SignInForm = ({ onSignIn }: Props) => {
           </tbody>
         </table>
       </form>
+      <p>
+        <Link to="/signup">회원가입</Link>
+      </p>
     </div>
   );
 };

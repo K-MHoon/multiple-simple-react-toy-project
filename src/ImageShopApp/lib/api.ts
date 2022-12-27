@@ -35,3 +35,11 @@ export const writeCodeDetail = (
 ) => client.post('/codedetails', { groupCode, codeValue, codeName });
 export const removeCodeDetail = (groupCode: string, codeValue: string) =>
   client.delete(`/codedetails/${groupCode}/${codeValue}`);
+
+export const signUp = (
+  userId: string,
+  userName: string,
+  userPw: string,
+  job: string,
+) => client.post('/users', { userId, userName, userPw, job });
+export const fetchJobCodeList = () => client.get('/codes/job');

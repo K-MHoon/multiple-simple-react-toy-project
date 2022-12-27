@@ -10,6 +10,7 @@ import CodeDetailModifyPage from './pages/codedetail/CodeDetailModifyPage';
 import CodeDetailReadPage from './pages/codedetail/CodeDetailReadPage';
 import CodeDetailRegisterPage from './pages/codedetail/CodeDetailRegisterPage';
 import HomePage from './pages/HomePage';
+import SignUpPage from './pages/auth/SignUpPage';
 
 export interface LoginInput {
   userId: string;
@@ -76,6 +77,7 @@ const App = () => {
         path="/codedetail/read/:groupCode/:codeValue"
         element={<CodeDetailReadPage />}
       />
+      <Route path="/signup" element={<SignUpPage />} />
     </Routes>
   );
 };
