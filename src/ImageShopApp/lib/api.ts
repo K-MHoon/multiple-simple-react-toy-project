@@ -1,4 +1,4 @@
-import { CodeDetailKey } from '../App';
+import { CodeDetailKey, UserObject } from '../App';
 import client from './client';
 
 export const adminSetup = (userId: string, userName: string, userPw: string) =>
@@ -43,3 +43,16 @@ export const signUp = (
   job: string,
 ) => client.post('/users', { userId, userName, userPw, job });
 export const fetchJobCodeList = () => client.get('/codes/job');
+
+export const fetchMember = (userNo: string) => client.get(`/users/${userNo}`);
+export const fetchMemberList = () => client.get('/users');
+export const modifyMember = (userNo: string, payload: UserObject) =>
+  client.put(`/users/${userNo}`, payload);
+export const writeMember = (
+  userId: string,
+  userName: string,
+  userPw: string,
+  job: string,
+) => client.post('/users', { userId, userName, userPw, job });
+export const removeMember = (userNo: string) =>
+  client.delete(`/users/${userNo}`);

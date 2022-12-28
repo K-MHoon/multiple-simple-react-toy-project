@@ -50,6 +50,29 @@ export interface CodeValue {
   value: string;
 }
 
+export interface Member {
+  userNo: string;
+  userId: string;
+  userPw: string;
+  userName: string;
+  job: string;
+  authList: AuthInfo[];
+  regDate: string;
+}
+
+export interface UserAuth {
+  userNo: string;
+  auth: string;
+}
+
+export interface UserObject {
+  userId: string;
+  userPw: string;
+  userName: string;
+  job: string;
+  authList: UserAuth[];
+}
+
 const App = () => {
   return (
     <Routes>
