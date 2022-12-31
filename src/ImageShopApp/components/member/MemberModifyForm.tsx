@@ -5,7 +5,7 @@ import styles from '../../css/imageShop.module.css';
 interface Props {
   readonly member: Member | null;
   readonly isLoading: boolean;
-  readonly onModify: () => void;
+  readonly onModify: (userNo: string, payload: any) => void;
 }
 
 const MemberModifyForm = ({ member, isLoading, onModify }: Props) => {

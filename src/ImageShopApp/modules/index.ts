@@ -5,11 +5,13 @@ import { all } from 'redux-saga/effects';
 import codegroup, { codeGroupSaga, CodeGroupState } from './codegroup';
 import loading, { LoadingState } from './loading';
 import codedetails, { codeDetailSaga, CodeDetailState } from './codedetails';
+import { MemberState } from './member';
 
 export interface RootState {
   auth: AuthState;
   codedetail: CodeDetailState;
   codegroup: CodeGroupState;
+  member: MemberState;
   loading: LoadingState;
 }
 

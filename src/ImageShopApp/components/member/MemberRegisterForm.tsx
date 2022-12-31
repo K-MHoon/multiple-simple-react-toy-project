@@ -2,7 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styles from '../../css/imageShop.module.css';
 
 interface Props {
-  readonly onRegister: () => void;
+  readonly onRegister: (
+    userId: string,
+    userName: string,
+    userPw: string,
+    job: string,
+  ) => void;
 }
 
 const MemberRegisterForm = ({ onRegister }: Props) => {
