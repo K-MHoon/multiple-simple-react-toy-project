@@ -24,6 +24,9 @@ const MenuBar = ({ isAuthorized, isAdmin }: Props) => {
                 <td width="120">
                   <Link to="/codegroup">코드관리</Link>
                 </td>
+                <td width="120">
+                  <Link to="/member">회원관리</Link>
+                </td>
               </>
             )}
 
