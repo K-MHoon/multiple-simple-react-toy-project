@@ -5,7 +5,7 @@ import { all } from 'redux-saga/effects';
 import codegroup, { codeGroupSaga, CodeGroupState } from './codegroup';
 import loading, { LoadingState } from './loading';
 import codedetails, { codeDetailSaga, CodeDetailState } from './codedetails';
-import { MemberState } from './member';
+import member, { memberSaga, MemberState } from './member';
 
 export interface RootState {
   auth: AuthState;
@@ -20,10 +20,11 @@ const rootReducer = combineReducers({
   loading,
   codegroup,
   codedetails,
+  member,
 });
 
 export function* rootSaga() {
-  yield all([authSaga(), codeGroupSaga(), codeDetailSaga()]);
+  yield all([authSaga(), codeGroupSaga(), codeDetailSaga(), memberSaga()]);
 }
 
 export default rootReducer;

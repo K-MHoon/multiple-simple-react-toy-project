@@ -38,7 +38,7 @@ const initialState: MemberState = {
   error: null,
 };
 
-const codedetails = createReducer(initialState, {
+const member = createReducer(initialState, {
   [FETCH_ONE]: (state) => ({
     ...state,
     member: null,
@@ -65,4 +65,4 @@ const codedetails = createReducer(initialState, {
   }),
 });
 
-export default codedetails;
+export default member;

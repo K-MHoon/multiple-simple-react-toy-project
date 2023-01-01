@@ -11,6 +11,10 @@ import CodeDetailReadPage from './pages/codedetail/CodeDetailReadPage';
 import CodeDetailRegisterPage from './pages/codedetail/CodeDetailRegisterPage';
 import HomePage from './pages/HomePage';
 import SignUpPage from './pages/auth/SignUpPage';
+import MemberReadPage from './pages/member/MemberReadPage';
+import MemberModifyPage from './pages/member/MemberModifyPage';
+import MemberRegisterPage from './pages/member/MemberRegisterPage';
+import MemberListPage from './pages/member/MemberListPage';
 
 export interface LoginInput {
   userId: string;
@@ -101,6 +105,11 @@ const App = () => {
         element={<CodeDetailReadPage />}
       />
       <Route path="/signup" element={<SignUpPage />} />
+
+      <Route path="/member" element={<MemberListPage />} />
+      <Route path="/member/create" element={<MemberRegisterPage />} />
+      <Route path="/member/edit/:userNo" element={<MemberModifyPage />} />
+      <Route path="/member/read/:userNo" element={<MemberReadPage />} />
     </Routes>
   );
 };
