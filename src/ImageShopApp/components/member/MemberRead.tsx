@@ -32,7 +32,7 @@ const MemberRead = ({ member, isLoading, userNo, onRemove }: Props) => {
   return (
     <div className={styles.centered}>
       <h2>회원 상세보기</h2>
-      {isLoading && "로딩중..."}
+      {isLoading && '로딩중...'}
       {!isLoading && member && (
         <>
           <table>
@@ -60,7 +60,9 @@ const MemberRead = ({ member, isLoading, userNo, onRemove }: Props) => {
                 <td>
                   <select value={member.job} disabled>
                     {jobCodes.map((jobCode) => (
-                      <option value={jobCode.value} key={jobCode.value}>{jobCode.label}</option>
+                      <option value={jobCode.value} key={jobCode.value}>
+                        {jobCode.label}
+                      </option>
                     ))}
                   </select>
                 </td>
@@ -68,7 +70,38 @@ const MemberRead = ({ member, isLoading, userNo, onRemove }: Props) => {
               <tr>
                 <td>권한 - 1</td>
                 <td>
-                  <select value={member.authList[0] && member.authList[0].auth} disabled>
+                  <select
+                    value={member.authList[0] && member.authList[0].auth}
+                    disabled
+                  >
+                    <option value="">=== 선택해 주세요 ===</option>
+                    <option value="ROLE_USER">사용자</option>
+                    <option value="ROLE_MEMBER">회원</option>
+                    <option value="ROLE_ADMIN">관리자</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>권한 - 2</td>
+                <td>
+                  <select
+                    value={member.authList[1] && member.authList[1].auth}
+                    disabled
+                  >
+                    <option value="">=== 선택해 주세요 ===</option>
+                    <option value="ROLE_USER">사용자</option>
+                    <option value="ROLE_MEMBER">회원</option>
+                    <option value="ROLE_ADMIN">관리자</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>권한 - 3</td>
+                <td>
+                  <select
+                    value={member.authList[2] && member.authList[2].auth}
+                    disabled
+                  >
                     <option value="">=== 선택해 주세요 ===</option>
                     <option value="ROLE_USER">사용자</option>
                     <option value="ROLE_MEMBER">회원</option>
