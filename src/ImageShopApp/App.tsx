@@ -26,6 +26,7 @@ export interface AuthInfo {
 }
 
 export interface MyInfo {
+  userId: string;
   userName: string;
   authList: AuthInfo[];
 }
@@ -75,6 +76,14 @@ export interface UserObject {
   userName: string;
   job: string;
   authList: UserAuth[];
+}
+
+export interface Board {
+  boardNo: string;
+  title: string;
+  writer: string;
+  content: string;
+  regDate: string;
 }
 
 const App = () => {

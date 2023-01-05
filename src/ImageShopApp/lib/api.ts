@@ -56,3 +56,16 @@ export const writeMember = (
 ) => client.post('/users', { userId, userName, userPw, job });
 export const removeMember = (userNo: string) =>
   client.delete(`/users/${userNo}`);
+
+export const fetchBoard = (boardNo: string) => client.get(`/boards/${boardNo}`);
+export const fetchBoardList = () => client.get('/boards');
+export const modifyBoard = (
+  boardNo: string,
+  title: string,
+  content: string,
+  writer: string,
+) => client.put(`/boards/${boardNo}`, { title, content, writer });
+export const writeBoard = (title: string, content: string) =>
+  client.post('/boards', { title, content });
+export const removeBoard = (boardNo: string, writer: string) =>
+  client.delete(`/users/${boardNo}?writer=${writer}`);
