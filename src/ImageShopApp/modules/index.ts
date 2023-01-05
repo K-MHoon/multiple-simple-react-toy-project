@@ -6,6 +6,7 @@ import codegroup, { codeGroupSaga, CodeGroupState } from './codegroup';
 import loading, { LoadingState } from './loading';
 import codedetails, { codeDetailSaga, CodeDetailState } from './codedetails';
 import member, { memberSaga, MemberState } from './member';
+import board, { boardSaga, BoardState } from './board';
 
 export interface RootState {
   auth: AuthState;
@@ -13,6 +14,7 @@ export interface RootState {
   codegroup: CodeGroupState;
   member: MemberState;
   loading: LoadingState;
+  board: BoardState;
 }
 
 const rootReducer = combineReducers({
@@ -21,10 +23,17 @@ const rootReducer = combineReducers({
   codegroup,
   codedetails,
   member,
+  board,
 });
 
 export function* rootSaga() {
-  yield all([authSaga(), codeGroupSaga(), codeDetailSaga(), memberSaga()]);
+  yield all([
+    authSaga(),
+    codeGroupSaga(),
+    codeDetailSaga(),
+    memberSaga(),
+    boardSaga(),
+  ]);
 }
 
 export default rootReducer;
